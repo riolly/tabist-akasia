@@ -27,5 +27,9 @@
       "module": "esnext",
       "isolatedModules": false
     }
+  },
+  "baseUrl": ".",
+  "paths": {
+    "@/*": ["./src/*"]
   }
 }
