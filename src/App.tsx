@@ -22,7 +22,7 @@ export default function App() {
 
         <div className="mx-4 mt-12 rounded border-4 border-dashed border-slate-400 bg-slate-100">
           <div
-            className="flex h-48 items-center justify-center overflow-clip "
+            className="flex h-56 items-center justify-center overflow-clip "
             id="canvas"
           >
             <div className="flex text-slate-900">
