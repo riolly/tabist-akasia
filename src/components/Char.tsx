@@ -4,9 +4,11 @@ import { Color } from '../constant';
 export default function Char({
   char,
   colorActive,
+  size,
 }: {
   char: string;
   colorActive: Color;
+  size: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
 
@@ -54,6 +56,7 @@ export default function Char({
     <span
       className={`h-fit touch-none select-none text-7xl hover:cursor-grab active:cursor-grabbing text-${colorActive}-500 `}
       ref={ref}
+      style={{ scale: `${size * 100}%` }}
     >
       {char}
     </span>

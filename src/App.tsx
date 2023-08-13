@@ -2,13 +2,14 @@ import { useState } from 'react';
 import Char from './components/Char';
 import ColorPicker from './components/ColorPicker';
 import { Input } from './components/ui/input';
+import { Slider } from './components/ui/slider';
 import { Color, COLORS } from './constant';
 import { cn, generateId } from './lib/utils';
 
 export default function App() {
   const [input, setInput] = useState<{ char: string; id: string }[]>([]);
-
   const [colorActive, setColorActive] = useState<Color>('black');
+  const [size, setSize] = useState<number[]>([1]);
 
   return (
     <div className="dark h-screen bg-gradient-to-br from-slate-900 to-violet-950">
@@ -17,16 +18,21 @@ export default function App() {
           Text Logo Maker
         </h1>
 
-        <div className="mt-8 flex h-48 w-full items-center justify-center overflow-clip rounded border-4 border-dashed border-slate-400 bg-slate-100">
+        <div className="mx-4 mt-8 flex h-48 items-center justify-center overflow-clip rounded border-4 border-dashed border-slate-400 bg-slate-100">
           <div className="flex text-slate-900">
             {input?.map(({ char, id }) => (
-              <Char char={char} colorActive={colorActive} key={id} />
+              <Char
+                char={char}
+                colorActive={colorActive}
+                key={id}
+                size={size[0]}
+              />
             ))}
           </div>
         </div>
         <p
           className={cn(
-            'mt-1 text-sm italic opacity-0',
+            'mx-4 mt-1 text-sm italic opacity-0',
             input?.length > 0 && 'opacity-100',
           )}
         >
@@ -44,7 +50,7 @@ export default function App() {
           placeholder="Input your text here..."
         />
 
-        <div className="mx-auto mt-6 flex w-fit gap-2">
+        <div className="mx-auto mt-6 flex w-fit gap-2 pb-8">
           {COLORS.map((color) => (
             <ColorPicker
               color={color}
@@ -53,6 +59,15 @@ export default function App() {
               setColorActive={setColorActive}
             />
           ))}
+        </div>
+
+        <div className="mt relative mx-auto mt-6 w-96 px-1">
+          <Slider
+            max={2}
+            onValueChange={(v) => setSize(v)}
+            step={0.1}
+            value={size}
+          />
         </div>
       </div>
     </div>
