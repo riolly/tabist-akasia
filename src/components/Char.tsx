@@ -48,7 +48,7 @@ export default function Char({
         el.style.zIndex = '0';
       });
     }
-  });
+  }, []);
 
   return (
     <span
