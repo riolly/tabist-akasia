@@ -11,7 +11,7 @@ import { cn, generateId } from './lib/utils';
 export default function App() {
   const [input, setInput] = useState<{ char: string; id: string }[]>([]);
   const [colorActive, setColorActive] = useState<Color>('black');
-  const [size, setSize] = useState<number[]>([1]);
+  const [size, setSize] = useState<number[]>([12]);
 
   return (
     <div className="h-screen bg-gradient-to-br from-slate-900 to-violet-950">
@@ -59,9 +59,9 @@ export default function App() {
 
         <div className="dark relative mx-auto mt-6 w-96 px-1">
           <Slider
-            max={2}
+            max={48}
             onValueChange={(v) => setSize(v)}
-            step={0.1}
+            step={1}
             value={size}
           />
         </div>
@@ -88,7 +88,7 @@ export default function App() {
                 // Create a link element to download the image
                 const downloadLink = document.createElement('a');
                 downloadLink.href = imageDataUrl;
-                downloadLink.download = 'screenshot.png';
+                downloadLink.download = 'logo.png';
                 downloadLink.click();
               });
             }}

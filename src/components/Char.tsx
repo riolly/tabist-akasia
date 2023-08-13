@@ -56,7 +56,8 @@ export default function Char({
     <span
       className={`h-fit touch-none select-none text-7xl hover:cursor-grab active:cursor-grabbing text-${colorActive}-500 `}
       ref={ref}
-      style={{ scale: `${size * 100}%` }}
+      // style={{ scale: `${size * 100}%` }}
+      style={{ fontSize: `${60 + size * 2}px` }}
     >
       {char}
     </span>
