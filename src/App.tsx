@@ -14,13 +14,13 @@ export default function App() {
   const [size, setSize] = useState<number[]>([1]);
 
   return (
-    <div className="dark h-screen bg-gradient-to-br from-slate-900 to-violet-950">
-      <div className="mx-auto max-w-screen-md pt-12">
-        <h1 className="text-center text-4xl font-bold text-primary">
+    <div className="h-screen bg-gradient-to-br from-slate-900 to-violet-950">
+      <div className="mx-auto max-w-screen-sm pt-12">
+        <h1 className="text-center text-5xl font-bold text-background">
           Text Logo Maker
         </h1>
 
-        <div className="mx-4 mt-8 rounded border-4 border-dashed border-slate-400 bg-slate-100">
+        <div className="mx-4 mt-12 rounded border-4 border-dashed border-slate-400 bg-slate-100">
           <div
             className="flex h-48 items-center justify-center overflow-clip "
             id="canvas"
@@ -39,14 +39,14 @@ export default function App() {
         </div>
         <p
           className={cn(
-            'mx-4 mt-1 text-sm italic opacity-0',
+            'mx-4 mt-1 text-sm italic text-background opacity-0',
             input?.length > 0 && 'opacity-100',
           )}
         >
           You can move the character around.
         </p>
         <Input
-          className="dark mx-auto mt-4 h-12 w-96 bg-slate-900 text-foreground"
+          className="mx-auto mt-6 w-96 "
           onChange={(e) =>
             setInput(
               e.target.value
@@ -56,6 +56,15 @@ export default function App() {
           }
           placeholder="Input your text here..."
         />
+
+        <div className="dark relative mx-auto mt-6 w-96 px-1">
+          <Slider
+            max={2}
+            onValueChange={(v) => setSize(v)}
+            step={0.1}
+            value={size}
+          />
+        </div>
 
         <div className="mx-auto mt-6 flex w-fit gap-2 pb-6">
           {COLORS.map((color) => (
@@ -68,18 +77,8 @@ export default function App() {
           ))}
         </div>
 
-        <div className="mt relative mx-auto mt-6 w-96 px-1">
-          <Slider
-            max={2}
-            onValueChange={(v) => setSize(v)}
-            step={0.1}
-            value={size}
-          />
-        </div>
-
         <div className="mx-auto mt-8 w-fit">
           <Button
-            className=""
             onClick={() => {
               const targetDiv = document.getElementById('canvas')!;
               html2canvas(targetDiv).then((canvas) => {
@@ -93,6 +92,7 @@ export default function App() {
                 downloadLink.click();
               });
             }}
+            variant={'secondary'}
           >
             Download Logo
           </Button>
