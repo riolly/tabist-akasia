@@ -13,7 +13,9 @@ export default function App() {
   return (
     <div className="dark h-screen bg-gradient-to-br from-slate-900 to-violet-950">
       <div className="mx-auto max-w-screen-md pt-12">
-        <h1 className="text-center text-4xl text-primary">Text Logo Maker</h1>
+        <h1 className="text-center text-4xl font-bold text-primary">
+          Text Logo Maker
+        </h1>
 
         <div className="mt-8 flex h-48 w-full items-center justify-center overflow-clip rounded border-4 border-dashed border-slate-400 bg-slate-100">
           <div className="flex text-slate-900">
