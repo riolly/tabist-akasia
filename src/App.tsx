@@ -1,6 +1,8 @@
+import html2canvas from 'html2canvas';
 import { useState } from 'react';
 import Char from './components/Char';
 import ColorPicker from './components/ColorPicker';
+import { Button } from './components/ui/button';
 import { Input } from './components/ui/input';
 import { Slider } from './components/ui/slider';
 import { Color, COLORS } from './constant';
@@ -18,16 +20,21 @@ export default function App() {
           Text Logo Maker
         </h1>
 
-        <div className="mx-4 mt-8 flex h-48 items-center justify-center overflow-clip rounded border-4 border-dashed border-slate-400 bg-slate-100">
-          <div className="flex text-slate-900">
-            {input?.map(({ char, id }) => (
-              <Char
-                char={char}
-                colorActive={colorActive}
-                key={id}
-                size={size[0]}
-              />
-            ))}
+        <div className="mx-4 mt-8 rounded border-4 border-dashed border-slate-400 bg-slate-100">
+          <div
+            className="flex h-48 items-center justify-center overflow-clip "
+            id="canvas"
+          >
+            <div className="flex text-slate-900">
+              {input?.map(({ char, id }) => (
+                <Char
+                  char={char}
+                  colorActive={colorActive}
+                  key={id}
+                  size={size[0]}
+                />
+              ))}
+            </div>
           </div>
         </div>
         <p
@@ -50,7 +57,7 @@ export default function App() {
           placeholder="Input your text here..."
         />
 
-        <div className="mx-auto mt-6 flex w-fit gap-2 pb-8">
+        <div className="mx-auto mt-6 flex w-fit gap-2 pb-6">
           {COLORS.map((color) => (
             <ColorPicker
               color={color}
@@ -68,6 +75,27 @@ export default function App() {
             step={0.1}
             value={size}
           />
+        </div>
+
+        <div className="mx-auto mt-8 w-fit">
+          <Button
+            className=""
+            onClick={() => {
+              const targetDiv = document.getElementById('canvas')!;
+              html2canvas(targetDiv).then((canvas) => {
+                // Convert the canvas to an image data URL
+                const imageDataUrl = canvas.toDataURL('image/png');
+
+                // Create a link element to download the image
+                const downloadLink = document.createElement('a');
+                downloadLink.href = imageDataUrl;
+                downloadLink.download = 'screenshot.png';
+                downloadLink.click();
+              });
+            }}
+          >
+            Download Logo
+          </Button>
         </div>
       </div>
     </div>

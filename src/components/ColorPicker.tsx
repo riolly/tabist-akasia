@@ -19,7 +19,9 @@ export default function ColorPicker({
       )}
       onClick={() => setColorActive(color)}
     >
-      <span className="absolute left-1/2 top-9 -translate-x-1/2">{color}</span>
+      <span className="absolute left-1/2 top-9 -translate-x-1/2 text-sm">
+        {color}
+      </span>
     </button>
   );
 }
