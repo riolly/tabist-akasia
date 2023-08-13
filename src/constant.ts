@@ -1,5 +1,5 @@
 export const COLORS = [
-  'gray',
+  'black',
   'red',
   'yellow',
   'green',

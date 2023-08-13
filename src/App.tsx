@@ -7,7 +7,7 @@ import { cn, generateId } from './lib/utils';
 export default function App() {
   const [input, setInput] = useState<{ char: string; id: string }[]>([]);
 
-  const [colorActive, setColorActive] = useState<Color>('gray');
+  const [colorActive, setColorActive] = useState<Color>('black');
 
   return (
     <div className="dark h-screen bg-gradient-to-br from-slate-900 to-violet-950">
@@ -70,6 +70,7 @@ function ColorPicker({
       className={cn(
         `relative h-10 w-10 rounded-lg border-4 border-opacity-0 bg-${color}-500 border-${color}-800 text-white text-opacity-0 transition-all duration-300`,
         colorActive === color && 'border-opacity-100 text-opacity-100',
+        color === 'black' && 'border-gray-500 bg-gray-800',
       )}
       onClick={() => setColorActive(color)}
     >
