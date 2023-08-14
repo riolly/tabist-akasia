@@ -81,6 +81,37 @@ export default function App() {
           <Button
             onClick={() => {
               const targetDiv = document.getElementById('canvas')!;
+              // const canvas = document.createElement('canvas');
+
+              // canvas.width = targetDiv.offsetWidth;
+              // canvas.height = targetDiv.offsetHeight;
+              // const ctx = canvas.getContext('2d')!;
+
+              // // Draw the content of the targetDiv onto the canvas
+              // ctx.clearRect(0, 0, canvas.width, canvas.height);
+              // const data = new XMLSerializer().serializeToString(targetDiv);
+              // const img = new Image();
+              // img.src =
+              //   'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data);
+
+              // img.onload = () => {
+              //   ctx.drawImage(
+              //     img,
+              //     0,
+              //     0,
+              //     targetDiv.offsetWidth,
+              //     targetDiv.offsetHeight,
+              //   );
+
+              //   canvas.toBlob((blob) => {
+              //     // Create a link element to download the image
+              //     const downloadLink = document.createElement('a');
+              //     downloadLink.href = URL.createObjectURL(blob!);
+              //     downloadLink.download = 'logo.png';
+              //     downloadLink.click();
+              //   }, 'image/png');
+              // };
+
               html2canvas(targetDiv).then((canvas) => {
                 // Convert the canvas to an image data URL
                 const imageDataUrl = canvas.toDataURL('image/png');
