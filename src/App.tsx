@@ -1,5 +1,5 @@
 import html2canvas from 'html2canvas';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Char from './components/Char';
 import ColorPicker from './components/ColorPicker';
 import { Button } from './components/ui/button';
@@ -12,6 +12,8 @@ export default function App() {
   const [input, setInput] = useState<{ char: string; id: string }[]>([]);
   const [colorActive, setColorActive] = useState<Color>('black');
   const [size, setSize] = useState<number[]>([12]);
+
+  const ref = useRef<HTMLInputElement>(null);
 
   return (
     <div className="h-screen bg-gradient-to-br from-slate-900 to-violet-950">
@@ -55,6 +57,7 @@ export default function App() {
             )
           }
           placeholder="Input your text here..."
+          ref={ref}
         />
 
         <div className="dark relative mx-auto mt-6 w-96 px-1">
@@ -119,7 +122,7 @@ export default function App() {
                 // Create a link element to download the image
                 const downloadLink = document.createElement('a');
                 downloadLink.href = imageDataUrl;
-                downloadLink.download = 'logo.png';
+                downloadLink.download = `${ref.current?.value}_logo.png`;
                 downloadLink.click();
               });
             }}
